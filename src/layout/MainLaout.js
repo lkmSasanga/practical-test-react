@@ -35,7 +35,7 @@ function MainLayout() {
 
   const addToCart = shipment => {
     console.log("add to cart", shipment);
-    store.dispatch({ type: "cart/add", payload: shipment.id });
+    store.dispatch({ type: "cart/add", payload: shipment });
   };
 
   const filterItems = size => {
@@ -184,8 +184,8 @@ function MainLayout() {
       {shipmentDetails && (
         <div className={classes.mainContainer}>
           {shipmentDetails.map(shipment => (
-            <div className={classes.Container}>
-              <Card key={shipment._id}>
+            <div key={shipment.id} className={classes.Container}>
+              <Card key={shipment.id}>
                 {shipment.details.tag ? (
                   <p className={classes.tag}>{shipment.details.tag}</p>
                 ) : null}
@@ -212,7 +212,7 @@ function MainLayout() {
 
       <div className={classes.cart} onClick={e => onClickCartHandler()}>
         <p>Cart</p>
-        <p className={classes.count}>10</p>
+        <p className={classes.count}>{store.getState().items.length}</p>
       </div>
 
       {showSpinner && <Spinner />}
