@@ -7,6 +7,7 @@ import axios from "axios";
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
+  const [itemSize, setItemSize] = useState("");
 
   useEffect(() => {
     setShowSpinner(true);
@@ -26,27 +27,128 @@ function MainLayout() {
       });
   }, []);
 
-  const addToCart = (shipment) => {
-    console.log('add to cart', shipment)
-};
+  const addToCart = shipment => {
+    console.log("add to cart", shipment);
+  };
+
+  const filterItems = size => {
+    // setItemSize(size);
+
+    if (size === "XS") {
+      let expandedSize = "xsmall";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "S") {
+      let expandedSize = "small";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "M") {
+      let expandedSize = "medium";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "ML") {
+      let expandedSize = "medium inseam length";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "ML") {
+      let expandedSize = "medium inseam length";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "L") {
+      let expandedSize = "large";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "XL") {
+      let expandedSize = "xlarge";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    } else if (size === "XXL") {
+      let expandedSize = "xxlarge";
+
+      for (let i = 0; i < shipmentDetails.length; i++) {
+        if (expandedSize === shipmentDetails[i].details.size) {
+          console.log("filtered item", shipmentDetails[i]);
+          let detailsArr = []
+          detailsArr.push(shipmentDetails[i])
+          setShipmentDetails(detailsArr)
+        }
+      }
+    }
+  };
+
   return (
     <div>
-
-    <div>
+      <div>
         <h1>Sizes</h1>
-    </div>
+        <button onClick={e => filterItems("XS")}>XS</button>
+        <button onClick={e => filterItems("S")}>S</button>
+        <button onClick={e => filterItems("M")}>M</button>
+        <button onClick={e => filterItems("ML")}>ML</button>
+        <button onClick={e => filterItems("L")}>L</button>
+        <button onClick={e => filterItems("XL")}>XL</button>
+        <button onClick={e => filterItems("XXL")}>XXL</button>
+      </div>
       {shipmentDetails && (
         <div>
           {shipmentDetails.map(shipment => (
             <div>
               <Card key={shipment._id}>
-                  <p>{shipment.details.tag}</p>
-                  <img src={shipment.details.image} alt="t-shirt" />
-                  <p>{shipment.name}</p>
-                  <p>{shipment.details.price}</p>
-                  <p>{shipment.details.size}</p>
+                <p>{shipment.details.tag}</p>
+                <img src={shipment.details.image} alt="t-shirt" />
+                <p>{shipment.name}</p>
+                <p>{shipment.details.price}</p>
+                <p>{shipment.details.size}</p>
 
-                  <button onClick={e => addToCart(shipment)}>Add to cart</button>
+                <button onClick={e => addToCart(shipment)}>Add to cart</button>
               </Card>
             </div>
           ))}
