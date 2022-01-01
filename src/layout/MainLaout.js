@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../components/UI/Spinner/Spinner";
 import Card from "../components/ItemCard/ItemCard";
 import axios from "axios";
-import classes from './MainLayout.module.css'
+import classes from "./MainLayout.module.css";
 
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
@@ -143,7 +143,7 @@ function MainLayout() {
   };
 
   return (
-    <div>
+    <div className={classes.page}>
       <div>
         <h1>Sizes</h1>
         <button onClick={e => filterItems("XS")}>XS</button>
@@ -156,17 +156,28 @@ function MainLayout() {
       </div>
       {notFound ? <p>NOT FOUND YOUR SIZE</p> : null}
       {shipmentDetails && (
-        <div>
+        <div className={classes.mainContainer}>
           {shipmentDetails.map(shipment => (
             <div className={classes.Container}>
               <Card key={shipment._id}>
-                <p className={classes.tag}>{shipment.details.tag}</p>
-                <img className={classes.image} src={shipment.details.image} alt="t-shirt" />
+                {shipment.details.tag ? (
+                  <p className={classes.tag}>{shipment.details.tag}</p>
+                ) : null}
+                <img
+                  className={classes.image}
+                  src={shipment.details.image}
+                  alt="t-shirt"
+                />
                 <p className={classes.name}>{shipment.name}</p>
                 <p className={classes.price}>{shipment.details.price}</p>
                 <p className={classes.size}>{shipment.details.size}</p>
 
-                <button className={classes.button} onClick={e => addToCart(shipment)}>Add to cart</button>
+                <button
+                  className={classes.button}
+                  onClick={e => addToCart(shipment)}
+                >
+                  Add to cart
+                </button>
               </Card>
             </div>
           ))}

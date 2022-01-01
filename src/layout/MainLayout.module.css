@@ -1,18 +1,39 @@
+.page {
+  margin: 10px 30px;
+}
+.mainContainer {
+  background: yellow;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  justify-content: space-between;
+}
 .container {
-    padding: 10px;
-    margin: 10px;
+  padding: 10px;
+  margin: 10px;
+  background: green;
 }
 
-.tag{
-justify-content: left;
-align-items: left;
-font-size: 20px;
+.tag {
+  /* justify-content: right !important; */
+  align-items: right;
+  font-size: 16;
+  color: white;
+  background: black;
+  padding: 10px;
+  width: 130px;
+  height: 30px;
+}
 
+.image {
+  width: 300px;
+  padding-top: 20px;
 }
 
 .button {
-    color: white;
-    background: #000;
-    padding: 20px 40px;
-    font-size: 20px;
+  color: white;
+  background: #000;
+  padding: 20px 80px;
+  font-size: 20px;
 }

@@ -4,10 +4,7 @@ import classes from "./ItemCard.module.css";
 
 const Card = props => {
   return (
-    <div className={`${classes.card} ${props.className}`}>
-    {props.children}
-   
-    </div>
+    <div className={`${classes.card} ${props.className}`}>{props.children}</div>
   );
 };
 
