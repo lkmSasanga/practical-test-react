@@ -33,94 +33,51 @@ function MainLayout() {
 
   const filterItems = size => {
     // setItemSize(size);
-
     if (size === "XS") {
       let expandedSize = "xsmall";
 
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
-      }
+      findItem(expandedSize);
     } else if (size === "S") {
       let expandedSize = "small";
 
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
-      }
+      findItem(expandedSize);
     } else if (size === "M") {
       let expandedSize = "medium";
 
       for (let i = 0; i < shipmentDetails.length; i++) {
         if (expandedSize === shipmentDetails[i].details.size) {
           console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
+          let detailsArr = [];
+          detailsArr.push(shipmentDetails[i]);
+          setShipmentDetails(detailsArr);
         }
       }
     } else if (size === "ML") {
       let expandedSize = "medium inseam length";
-
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
-      }
+      findItem(expandedSize);
     } else if (size === "ML") {
       let expandedSize = "medium inseam length";
-
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
-      }
+      findItem(expandedSize);
     } else if (size === "L") {
       let expandedSize = "large";
-
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
-      }
+      findItem(expandedSize);
     } else if (size === "XL") {
       let expandedSize = "xlarge";
 
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
-      }
+      findItem(expandedSize);
     } else if (size === "XXL") {
       let expandedSize = "xxlarge";
+      findItem(expandedSize);
+    }
+  };
 
-      for (let i = 0; i < shipmentDetails.length; i++) {
-        if (expandedSize === shipmentDetails[i].details.size) {
-          console.log("filtered item", shipmentDetails[i]);
-          let detailsArr = []
-          detailsArr.push(shipmentDetails[i])
-          setShipmentDetails(detailsArr)
-        }
+  const findItem = size => {
+    for (let i = 0; i < shipmentDetails.length; i++) {
+      if (size === shipmentDetails[i].details.size) {
+        console.log("filtered item", shipmentDetails[i]);
+        let detailsArr = [];
+        detailsArr.push(shipmentDetails[i]);
+        setShipmentDetails(detailsArr);
       }
     }
   };
