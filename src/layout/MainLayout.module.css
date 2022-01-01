@@ -1,8 +1,11 @@
 .page {
-  margin: 10px 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: row;
 }
 .mainContainer {
-  background: yellow;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,7 +15,6 @@
 .container {
   padding: 10px;
   margin: 10px;
-  background: green;
 }
 
 .tag {
@@ -36,4 +38,46 @@
   background: #000;
   padding: 20px 80px;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.filterContainer {
+margin-right: 50px;
+}
+
+.filterBtn {
+  border: none;
+  border-radius: 50%;
+  color: rgb(82, 82, 82);
+  background: rgb(225, 225, 225);
+  width: 60px;
+  height: 60px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+.cart {
+    background: black;
+    color: white;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    margin-left: 50px;
+    /* margin-right: 50px; */
+    cursor: pointer;
+
+}
+.count {
+    background: yellow;
+    color: black;
+    border-radius: 100%;
+    margin-top: -10px;
+}
+.drawerContainer {
+    background: black;
+    color: white;
+    width: 1000px;
 }

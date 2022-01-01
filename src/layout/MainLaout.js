@@ -11,6 +11,8 @@ function MainLayout() {
   const [itemSize, setItemSize] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [filter, setFilter] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
+  
 
   useEffect(() => {
     setShowSpinner(true);
@@ -142,17 +144,37 @@ function MainLayout() {
     setFilter(false);
   };
 
+  const onClickCartHandler = () => {
+    console.log("cart clicked");
+    
+    setShowDrawer(!showDrawer)
+  };
+
   return (
     <div className={classes.page}>
-      <div>
-        <h1>Sizes</h1>
-        <button onClick={e => filterItems("XS")}>XS</button>
-        <button onClick={e => filterItems("S")}>S</button>
-        <button onClick={e => filterItems("M")}>M</button>
-        <button onClick={e => filterItems("ML")}>ML</button>
-        <button onClick={e => filterItems("L")}>L</button>
-        <button onClick={e => filterItems("XL")}>XL</button>
-        <button onClick={e => filterItems("XXL")}>XXL</button>
+      <div className={classes.filterContainer}>
+        <h1>Sizes:</h1>
+        <button className={classes.filterBtn} onClick={e => filterItems("XS")}>
+          XS
+        </button>
+        <button className={classes.filterBtn} onClick={e => filterItems("S")}>
+          S
+        </button>
+        <button className={classes.filterBtn} onClick={e => filterItems("M")}>
+          M
+        </button>
+        <button className={classes.filterBtn} onClick={e => filterItems("ML")}>
+          ML
+        </button>
+        <button className={classes.filterBtn} onClick={e => filterItems("L")}>
+          L
+        </button>
+        <button className={classes.filterBtn} onClick={e => filterItems("XL")}>
+          XL
+        </button>
+        <button className={classes.filterBtn} onClick={e => filterItems("XXL")}>
+          XXL
+        </button>
       </div>
       {notFound ? <p>NOT FOUND YOUR SIZE</p> : null}
       {shipmentDetails && (
@@ -184,7 +206,14 @@ function MainLayout() {
         </div>
       )}
 
+      <div className={classes.cart} onClick={e => onClickCartHandler()}>
+        <p>Cart</p>
+        <p className={classes.count}>10</p>
+      </div>
+
       {showSpinner && <Spinner />}
+
+      {showDrawer ? <div className={classes.drawerContainer}>drawer</div> : null}
     </div>
   );
 }
