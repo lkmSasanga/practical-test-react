@@ -4,6 +4,8 @@ import Spinner from "../components/UI/Spinner/Spinner";
 import Card from "../components/ItemCard/ItemCard";
 import axios from "axios";
 import classes from "./MainLayout.module.css";
+import store from "../redux/store";
+import Drawer from "../components/drawer/drawer";
 
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
@@ -12,7 +14,6 @@ function MainLayout() {
   const [notFound, setNotFound] = useState(false);
   const [filter, setFilter] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
-  
 
   useEffect(() => {
     setShowSpinner(true);
@@ -34,6 +35,7 @@ function MainLayout() {
 
   const addToCart = shipment => {
     console.log("add to cart", shipment);
+    store.dispatch({ type: "cart/add", payload: shipment.id });
   };
 
   const filterItems = size => {
@@ -146,8 +148,10 @@ function MainLayout() {
 
   const onClickCartHandler = () => {
     console.log("cart clicked");
-    
-    setShowDrawer(!showDrawer)
+
+    setShowDrawer(!showDrawer);
+
+
   };
 
   return (
@@ -212,8 +216,13 @@ function MainLayout() {
       </div>
 
       {showSpinner && <Spinner />}
+      {/* <Drawer/> */}
 
-      {showDrawer ? <div className={classes.drawerContainer}>drawer</div> : null}
+      {showDrawer ? (
+        <div className={classes.drawerContainer}>
+          <Drawer/>
+        </div>
+      ) : null}
     </div>
   );
 }
