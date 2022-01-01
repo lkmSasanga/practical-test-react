@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../components/UI/Spinner/Spinner";
 import Card from "../components/ItemCard/ItemCard";
 import axios from "axios";
+import classes from './MainLayout.module.css'
 
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
@@ -157,15 +158,15 @@ function MainLayout() {
       {shipmentDetails && (
         <div>
           {shipmentDetails.map(shipment => (
-            <div>
+            <div className={classes.Container}>
               <Card key={shipment._id}>
-                <p>{shipment.details.tag}</p>
-                <img src={shipment.details.image} alt="t-shirt" />
-                <p>{shipment.name}</p>
-                <p>{shipment.details.price}</p>
-                <p>{shipment.details.size}</p>
+                <p className={classes.tag}>{shipment.details.tag}</p>
+                <img className={classes.image} src={shipment.details.image} alt="t-shirt" />
+                <p className={classes.name}>{shipment.name}</p>
+                <p className={classes.price}>{shipment.details.price}</p>
+                <p className={classes.size}>{shipment.details.size}</p>
 
-                <button onClick={e => addToCart(shipment)}>Add to cart</button>
+                <button className={classes.button} onClick={e => addToCart(shipment)}>Add to cart</button>
               </Card>
             </div>
           ))}

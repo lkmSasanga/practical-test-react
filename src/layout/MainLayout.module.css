@@ -1,0 +1,18 @@
+.container {
+    padding: 10px;
+    margin: 10px;
+}
+
+.tag{
+justify-content: left;
+align-items: left;
+font-size: 20px;
+
+}
+
+.button {
+    color: white;
+    background: #000;
+    padding: 20px 40px;
+    font-size: 20px;
+}
