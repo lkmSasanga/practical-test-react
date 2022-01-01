@@ -25,22 +25,28 @@ function MainLayout() {
         }
       });
   }, []);
+
+  const addToCart = (shipment) => {
+    console.log('add to cart', shipment)
+};
   return (
     <div>
+
+    <div>
+        <h1>Sizes</h1>
+    </div>
       {shipmentDetails && (
         <div>
           {shipmentDetails.map(shipment => (
             <div>
               <Card key={shipment._id}>
-                <div>
                   <p>{shipment.details.tag}</p>
-                  <img src={shipment.details.image} alt="image" />
+                  <img src={shipment.details.image} alt="t-shirt" />
                   <p>{shipment.name}</p>
                   <p>{shipment.details.price}</p>
                   <p>{shipment.details.size}</p>
 
-                  <button>Add to cart</button>
-                </div>
+                  <button onClick={e => addToCart(shipment)}>Add to cart</button>
               </Card>
             </div>
           ))}
