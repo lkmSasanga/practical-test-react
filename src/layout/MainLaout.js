@@ -8,6 +8,8 @@ function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
   const [itemSize, setItemSize] = useState("");
+  const [notFound, setNotFound] = useState(false);
+  const [filter, setFilter] = useState(false);
 
   useEffect(() => {
     setShowSpinner(true);
@@ -32,6 +34,9 @@ function MainLayout() {
   };
 
   const filterItems = size => {
+    setNotFound(false);
+    setFilter(true);
+    // window.location.reload(false);
     // setItemSize(size);
     if (size === "XS") {
       let expandedSize = "xsmall";
@@ -55,9 +60,6 @@ function MainLayout() {
     } else if (size === "ML") {
       let expandedSize = "medium inseam length";
       findItem(expandedSize);
-    } else if (size === "ML") {
-      let expandedSize = "medium inseam length";
-      findItem(expandedSize);
     } else if (size === "L") {
       let expandedSize = "large";
       findItem(expandedSize);
@@ -72,14 +74,71 @@ function MainLayout() {
   };
 
   const findItem = size => {
+    // axios
+    //   .get(
+    //     "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
+    //   )
+    //   .then(response => {
+    //     console.log(response.data);
+    //     if (response.status === 200) {
+    //       console.log("success");
+    //       setShowSpinner(false);
+    //       setShipmentDetails(response.data);
+    //       detailsArr.push({});
+    //     }
+    //   });
+
+    let detailsArr = [];
+
+    // if (filter) {
+    //   setShowSpinner(true);
+
+    //   axios
+    //     .get(
+    //       "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
+    //     )
+    //     .then(response => {
+    //       console.log(response.data);
+    //       if (response.status === 200) {
+    //         console.log("success");
+    //         setShowSpinner(false);
+    //         setShipmentDetails(response.data);
+    //         detailsArr.push({});
+    //       }
+    //     });
+
+    //   for (let i = 0; i < shipmentDetails.length; i++) {
+    //     if (size === shipmentDetails[i].details.size) {
+    //       console.log("filtered item", shipmentDetails[i]);
+    //       detailsArr.push(shipmentDetails[i]);
+    //       setShipmentDetails(detailsArr);
+    //     }
+    //   }
+    // } else {
+    //   for (let i = 0; i < shipmentDetails.length; i++) {
+    //     if (size === shipmentDetails[i].details.size) {
+    //       console.log("filtered item", shipmentDetails[i]);
+    //       detailsArr.push(shipmentDetails[i]);
+    //       setShipmentDetails(detailsArr);
+    //     }
+    //   }
+    // }
+
     for (let i = 0; i < shipmentDetails.length; i++) {
       if (size === shipmentDetails[i].details.size) {
         console.log("filtered item", shipmentDetails[i]);
-        let detailsArr = [];
         detailsArr.push(shipmentDetails[i]);
         setShipmentDetails(detailsArr);
       }
     }
+
+    if (detailsArr.length === 0) {
+      console.log(detailsArr.length);
+      console.log("not found ");
+      setNotFound(true);
+    }
+    detailsArr.push();
+    setFilter(false);
   };
 
   return (
@@ -94,6 +153,7 @@ function MainLayout() {
         <button onClick={e => filterItems("XL")}>XL</button>
         <button onClick={e => filterItems("XXL")}>XXL</button>
       </div>
+      {notFound ? <p>NOT FOUND YOUR SIZE</p> : null}
       {shipmentDetails && (
         <div>
           {shipmentDetails.map(shipment => (
