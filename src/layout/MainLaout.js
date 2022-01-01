@@ -33,7 +33,13 @@ function MainLayout() {
             <div>
               <Card key={shipment._id}>
                 <div>
+                  <p>{shipment.details.tag}</p>
+                  <img src={shipment.details.image} alt="image" />
                   <p>{shipment.name}</p>
+                  <p>{shipment.details.price}</p>
+                  <p>{shipment.details.size}</p>
+
+                  <button>Add to cart</button>
                 </div>
               </Card>
             </div>
