@@ -4,6 +4,7 @@ import classes from "./drawer.module.css";
 import store from "../../redux/store";
 import axios from "axios";
 import DrawerCard from "./drawerCard/drawerCard";
+import 'font-awesome/css/font-awesome.min.css';
 
 const Drawer = props => {
   const [shipmentDetails, setShipmentDetails] = useState("");

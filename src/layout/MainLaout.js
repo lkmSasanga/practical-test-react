@@ -6,6 +6,8 @@ import axios from "axios";
 import classes from "./MainLayout.module.css";
 import store from "../redux/store";
 import Drawer from "../components/drawer/drawer";
+import 'font-awesome/css/font-awesome.min.css';
+
 
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
@@ -211,7 +213,7 @@ function MainLayout() {
       )}
 
       <div className={classes.cart} onClick={e => onClickCartHandler()}>
-        <p>Cart</p>
+        <p className={classes.cartIcon}><i className="fa fa-cart-plus fa-2x"/></p>
         <p className={classes.count}>{store.getState().items.length}</p>
       </div>
 
