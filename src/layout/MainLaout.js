@@ -17,7 +17,6 @@ function MainLayout() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [cartClicked, setCartClicked] = useState(false);
   const [count, setCount] = useState("0");
-  
 
   useEffect(() => {
     setShowSpinner(true);
@@ -144,96 +143,121 @@ function MainLayout() {
     console.log("cart clicked");
     setCount(store.getState().items.length);
 
-
     setShowDrawer(!showDrawer);
     // setCartClicked(true);
-
   };
 
   return (
-    <div >
-    {!showSpinner ? <div className={classes.page}>
-      <div className={classes.filterContainer}>
-        <h1>Sizes:</h1>
-        <button className={classes.filterBtn} onClick={e => filterItems("XS")}>
-          XS
-        </button>
-        <button className={classes.filterBtn} onClick={e => filterItems("S")}>
-          S
-        </button>
-        <button className={classes.filterBtn} onClick={e => filterItems("M")}>
-          M
-        </button>
-        <button className={classes.filterBtn} onClick={e => filterItems("ML")}>
-          ML
-        </button>
-        <button className={classes.filterBtn} onClick={e => filterItems("L")}>
-          L
-        </button>
-        <button className={classes.filterBtn} onClick={e => filterItems("XL")}>
-          XL
-        </button>
-        <button className={classes.filterBtn} onClick={e => filterItems("XXL")}>
-          XXL
-        </button>
-      </div>
-      {notFound ? <p>NOT FOUND YOUR SIZE</p> : null}
-      {shipmentDetails && (
-        <div className={classes.mainContainer}>
-          {shipmentDetails.map(shipment => (
-            <div key={shipment.id} className={classes.Container}>
-              <Card key={shipment.id}>
-                {shipment.details.tag ? (
-                  <p className={classes.tag}>{shipment.details.tag}</p>
-                ) : null}
-                <img
-                  className={classes.image}
-                  src={shipment.details.image}
-                  alt="t-shirt"
-                />
-                <p className={classes.name}>{shipment.name}</p>
-                <p className={classes.price}>{shipment.details.price}</p>
-                <p className={classes.size}>{shipment.details.size}</p>
+    <div>
+      {!showSpinner ? (
+        <div className={classes.page}>
+          <div className={classes.filterContainer}>
+            <h1>Sizes:</h1>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("XS")}
+            >
+              XS
+            </button>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("S")}
+            >
+              S
+            </button>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("M")}
+            >
+              M
+            </button>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("ML")}
+            >
+              ML
+            </button>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("L")}
+            >
+              L
+            </button>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("XL")}
+            >
+              XL
+            </button>
+            <button
+              className={classes.filterBtn}
+              onClick={e => filterItems("XXL")}
+            >
+              XXL
+            </button>
+          </div>
+          {notFound ? <p>NOT FOUND YOUR SIZE</p> : null}
+          {shipmentDetails && (
+            <div className={classes.mainContainer}>
+              {shipmentDetails.map(shipment => (
+                <div key={shipment.id} className={classes.Container}>
+                  <Card key={shipment.id}>
+                    {shipment.details.tag ? (
+                      <p className={classes.tag}>{shipment.details.tag}</p>
+                    ) : null}
+                    <img
+                      className={classes.image}
+                      src={shipment.details.image}
+                      alt="t-shirt"
+                    />
+                    <p className={classes.name}>{shipment.name}</p>
+                    <div className={classes.line}>{/* <hr/> */}</div>
+                    <p className={classes.price}>$ {shipment.details.price}</p>
+                    <p className={classes.size}>{shipment.details.size}</p>
 
-                <button
-                  className={classes.button}
-                  onClick={e => addToCart(shipment)}
-                >
-                  Add to cart
-                </button>
-              </Card>
+                    <button
+                      className={classes.button}
+                      onClick={e => addToCart(shipment)}
+                    >
+                      Add to cart
+                    </button>
+                  </Card>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
+
+          <div className={classes.cart} onClick={e => onClickCartHandler()}>
+            {!showDrawer ? (
+              <div>
+                <p className={classes.cartIcon}>
+                  <i className="fa fa-cart-plus fa-2x" />
+                </p>
+                <p className={classes.count}>{count}</p>
+              </div>
+            ) : (
+              <div>
+                <p className={classes.closeIcon}>
+                  <i className="fa fa-times fa-2x" />
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* {showSpinner && <div className={classes.spinner}><Spinner /></div>} */}
+          {/* <Drawer/> */}
+
+          {showDrawer ? (
+            <div className={classes.drawerContainer}>
+              <Drawer />
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <div className={classes.spinner}>
+          <Spinner />
         </div>
       )}
-
-      <div className={classes.cart} onClick={e => onClickCartHandler()}>
-        {!showDrawer ? (
-          <div>
-            <p className={classes.cartIcon}>
-              <i className="fa fa-cart-plus fa-2x" />
-            </p>
-            <p className={classes.count}>{count}</p>
-          </div>
-        ) : (
-          <div>
-            <p className={classes.closeIcon}>
-              <i className="fa fa-times fa-2x" />
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* {showSpinner && <div className={classes.spinner}><Spinner /></div>} */}
-      {/* <Drawer/> */}
-
-      {showDrawer ? (
-        <div className={classes.drawerContainer}>
-          <Drawer />
-        </div>
-      ) : null}
-    </div> : <div className={classes.spinner}><Spinner /></div>}
-      
     </div>
   );
 }

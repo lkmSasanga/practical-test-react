@@ -4,9 +4,9 @@
   border-radius: 10px;
   padding: 20px;
   width: 400px;
-  height: 720px;
+  height: auto;
   flex: 1 0 21%;
-  margin: 20px auto;
+  margin: 20px 20px;
   text-align: center;
 }
 
