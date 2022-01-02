@@ -4,7 +4,7 @@ import classes from "./drawer.module.css";
 import store from "../../redux/store";
 import axios from "axios";
 import DrawerCard from "./drawerCard/drawerCard";
-import 'font-awesome/css/font-awesome.min.css';
+import "font-awesome/css/font-awesome.min.css";
 
 const Drawer = props => {
   const [shipmentDetails, setShipmentDetails] = useState("");
@@ -50,7 +50,19 @@ const Drawer = props => {
   }, []);
   return (
     <div className={classes.bagContainer}>
-      <h2 className={classes.bag}>Bag</h2>
+      <div className={classes.bagTitleContainer}>
+        {/* <div>
+          <p className={classes.cartIcon}>
+            <i className="fa fa-cart-plus fa-2x" />
+          </p>
+          <p className={classes.count}>{store.getState().items.length}</p>
+        </div> */}
+
+        <h2 className={classes.bag}><i className="fa fa-cart-plus fa-lg" /> &nbsp; Bag</h2>
+        <p className={classes.count}>{store.getState().items.length}</p>
+     
+      </div>
+
       <div>
         {shipmentDetails && (
           <div className={classes.mainContainer}>

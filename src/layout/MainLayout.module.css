@@ -17,6 +17,12 @@
   margin: 10px;
 }
 
+.spinner {
+  justify-content: center;
+  align-items: center;
+  margin: 15% auto;
+}
+
 .tag {
   /* justify-content: right !important; */
   align-items: right;
@@ -42,7 +48,7 @@
 }
 
 .filterContainer {
-margin-right: 50px;
+  margin-right: 50px;
 }
 
 .filterBtn {
@@ -57,36 +63,39 @@ margin-right: 50px;
   cursor: pointer;
 }
 
-
 .cart {
-    background: black;
-    color: white;
-    width: 50px;
-    height: 50px;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-    margin-left: 50px;
-    /* margin-right: 50px; */
-    cursor: pointer;
-    border-radius: 10px;
-
+  background: black;
+  color: white;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  margin-left: 50px;
+  /* margin-right: 50px; */
+  cursor: pointer;
+  border-radius: 10px;
+  display: fixed;
 }
-.cartIcon{
+.cartIcon {
   margin-top: -2px;
 }
+
+.closeIcon {
+  margin-top: 8px;
+}
 .count {
-    background: yellow;
-    color: black;
-    border-radius: 100%;
-    margin-top: -10px;
-    width: 25px;
-    height: 25px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+  background: yellow;
+  color: black;
+  border-radius: 100%;
+  margin-top: -10px;
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 .drawerContainer {
-    background: black;
-    color: white;
-    width: 1900px;
+  background: black;
+  color: white;
+  width: 1900px;
 }

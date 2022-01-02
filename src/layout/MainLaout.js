@@ -6,8 +6,7 @@ import axios from "axios";
 import classes from "./MainLayout.module.css";
 import store from "../redux/store";
 import Drawer from "../components/drawer/drawer";
-import 'font-awesome/css/font-awesome.min.css';
-
+import "font-awesome/css/font-awesome.min.css";
 
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
@@ -16,6 +15,9 @@ function MainLayout() {
   const [notFound, setNotFound] = useState(false);
   const [filter, setFilter] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
+  const [cartClicked, setCartClicked] = useState(false);
+  const [count, setCount] = useState("0");
+  
 
   useEffect(() => {
     setShowSpinner(true);
@@ -34,6 +36,10 @@ function MainLayout() {
         }
       });
   }, []);
+
+  // useEffect(() => {
+  //   setCount(store.getState().items.length);
+  // },[cartClicked]);
 
   const addToCart = shipment => {
     console.log("add to cart", shipment);
@@ -81,20 +87,6 @@ function MainLayout() {
   };
 
   const findItem = size => {
-    // axios
-    //   .get(
-    //     "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
-    //   )
-    //   .then(response => {
-    //     console.log(response.data);
-    //     if (response.status === 200) {
-    //       console.log("success");
-    //       setShowSpinner(false);
-    //       setShipmentDetails(response.data);
-    //       detailsArr.push({});
-    //     }
-    //   });
-
     let detailsArr = [];
 
     // if (filter) {
@@ -150,14 +142,17 @@ function MainLayout() {
 
   const onClickCartHandler = () => {
     console.log("cart clicked");
+    setCount(store.getState().items.length);
+
 
     setShowDrawer(!showDrawer);
-
+    // setCartClicked(true);
 
   };
 
   return (
-    <div className={classes.page}>
+    <div >
+    {!showSpinner ? <div className={classes.page}>
       <div className={classes.filterContainer}>
         <h1>Sizes:</h1>
         <button className={classes.filterBtn} onClick={e => filterItems("XS")}>
@@ -213,18 +208,32 @@ function MainLayout() {
       )}
 
       <div className={classes.cart} onClick={e => onClickCartHandler()}>
-        <p className={classes.cartIcon}><i className="fa fa-cart-plus fa-2x"/></p>
-        <p className={classes.count}>{store.getState().items.length}</p>
+        {!showDrawer ? (
+          <div>
+            <p className={classes.cartIcon}>
+              <i className="fa fa-cart-plus fa-2x" />
+            </p>
+            <p className={classes.count}>{count}</p>
+          </div>
+        ) : (
+          <div>
+            <p className={classes.closeIcon}>
+              <i className="fa fa-times fa-2x" />
+            </p>
+          </div>
+        )}
       </div>
 
-      {showSpinner && <Spinner />}
+      {/* {showSpinner && <div className={classes.spinner}><Spinner /></div>} */}
       {/* <Drawer/> */}
 
       {showDrawer ? (
         <div className={classes.drawerContainer}>
-          <Drawer/>
+          <Drawer />
         </div>
       ) : null}
+    </div> : <div className={classes.spinner}><Spinner /></div>}
+      
     </div>
   );
 }
