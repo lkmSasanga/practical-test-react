@@ -10,11 +10,9 @@ import "font-awesome/css/font-awesome.min.css";
 function MainLayout() {
   const [shipmentDetails, setShipmentDetails] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
-  const [itemSize, setItemSize] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [filter, setFilter] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
-  // const [cartClicked, setCartClicked] = useState(false);
   const [count, setCount] = useState("0");
 
   useEffect(() => {
@@ -34,10 +32,6 @@ function MainLayout() {
         }
       });
   }, []);
-
-  // useEffect(() => {
-  //   setCount(store.getState().items.length);
-  // },[cartClicked]);
 
   const addToCart = shipment => {
     console.log("add to cart", shipment);
