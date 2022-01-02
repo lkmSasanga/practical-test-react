@@ -15,38 +15,6 @@ const Drawer = props => {
     let storeArr = store.getState().items;
     console.log("from cart", storeArr);
     setShipmentDetails(storeArr);
-
-    // if (storeArr.length !== 0) {
-    //   axios
-    //     .get(
-    //       "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
-    //     )
-    //     .then(response => {
-    //       console.log(response.data);
-    //       if (response.status === 200) {
-    //         console.log("success", response.data);
-
-    //         for (let i = 0; i < storeArr.length; i++) {
-    //             // console.log(storeArr[i])
-    //             for(let j = 0; j < response.data.length; j++) {
-    //                 // console.log(response.data[j].id)
-    //                 if (storeArr[i] === response.data[j].id) {
-    //                     console.log("cart item", response.data);
-
-    //                     // for (let k = 0; k < response.data.length; k++) {
-    //                     //     const element = array[k];
-
-    //                     // }
-    //                     // setShipmentDetails(detailsArr);
-    //                   }
-    //             }
-
-    //           }
-    //         // setShipmentDetails(response.data);
-    //       }
-    //     });
-
-    // }
   }, []);
   return (
     <div className={classes.bagContainer}>

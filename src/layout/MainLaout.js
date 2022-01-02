@@ -1,4 +1,3 @@
-// import styles from "./MainLayout.module.css";
 import React, { useEffect, useState } from "react";
 import Spinner from "../components/UI/Spinner/Spinner";
 import Card from "../components/ItemCard/ItemCard";
@@ -15,7 +14,7 @@ function MainLayout() {
   const [notFound, setNotFound] = useState(false);
   const [filter, setFilter] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
-  const [cartClicked, setCartClicked] = useState(false);
+  // const [cartClicked, setCartClicked] = useState(false);
   const [count, setCount] = useState("0");
 
   useEffect(() => {
@@ -43,14 +42,15 @@ function MainLayout() {
   const addToCart = shipment => {
     console.log("add to cart", shipment);
     store.dispatch({ type: "cart/add", payload: shipment });
+
+    setCount(store.getState().items.length);
   };
 
   const filterItems = size => {
     setShowSpinner(true);
     setNotFound(false);
     setFilter(true);
-    // window.location.reload(false);
-    // setItemSize(size);
+
     if (size === "XS") {
       let expandedSize = "xsmall";
 
@@ -91,9 +91,6 @@ function MainLayout() {
 
     let detailsArr = [];
 
-    // if (filter) {
-    //   setShowSpinner(true);
-
     axios
       .get(
         "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
@@ -125,28 +122,10 @@ function MainLayout() {
         setFilter(false);
         setShowSpinner(false);
       });
-
-    //   for (let i = 0; i < shipmentDetails.length; i++) {
-    //     if (size === shipmentDetails[i].details.size) {
-    //       console.log("filtered item", shipmentDetails[i]);
-    //       detailsArr.push(shipmentDetails[i]);
-    //       setShipmentDetails(detailsArr);
-    //     }
-    //   }
-    // } else {
-    //   for (let i = 0; i < shipmentDetails.length; i++) {
-    //     if (size === shipmentDetails[i].details.size) {
-    //       console.log("filtered item", shipmentDetails[i]);
-    //       detailsArr.push(shipmentDetails[i]);
-    //       setShipmentDetails(detailsArr);
-    //     }
-    //   }
-    // }
   };
 
   const onClickCartHandler = () => {
     console.log("cart clicked");
-    setCount(store.getState().items.length);
 
     setShowDrawer(!showDrawer);
     // setCartClicked(true);

@@ -48,6 +48,7 @@
 .image {
   width: 10%;
   height: 10%;
+  margin-top: 10px;
 }
 
 .name {
@@ -73,7 +74,7 @@
   font-size: 20px;
   cursor: pointer;
   border: 1px solid white;
-  margin: 0px auto;
+  margin: 20px auto;
   justify-content: center;
   align-items: center;
 }
