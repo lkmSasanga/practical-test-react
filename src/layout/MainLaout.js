@@ -46,6 +46,7 @@ function MainLayout() {
   };
 
   const filterItems = size => {
+    setShowSpinner(true);
     setNotFound(false);
     setFilter(true);
     // window.location.reload(false);
@@ -86,24 +87,44 @@ function MainLayout() {
   };
 
   const findItem = size => {
+    setShipmentDetails([]);
+
     let detailsArr = [];
 
     // if (filter) {
     //   setShowSpinner(true);
 
-    //   axios
-    //     .get(
-    //       "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
-    //     )
-    //     .then(response => {
-    //       console.log(response.data);
-    //       if (response.status === 200) {
-    //         console.log("success");
-    //         setShowSpinner(false);
-    //         setShipmentDetails(response.data);
-    //         detailsArr.push({});
-    //       }
-    //     });
+    axios
+      .get(
+        "https://my-json-server.typicode.com/prasadhewage/ecommerce/shipments"
+      )
+      .then(response => {
+        console.log(response.data);
+        if (response.status === 200) {
+          console.log("success");
+          setShowSpinner(false);
+          setShipmentDetails(response.data);
+          // detailsArr.push({});
+        }
+      })
+      .then(() => {
+        for (let i = 0; i < shipmentDetails.length; i++) {
+          if (size === shipmentDetails[i].details.size) {
+            console.log("filtered item", shipmentDetails[i]);
+            detailsArr.push(shipmentDetails[i]);
+            setShipmentDetails(detailsArr);
+          }
+        }
+
+        if (detailsArr.length === 0) {
+          console.log(detailsArr.length);
+          console.log("not found ");
+          setNotFound(true);
+        }
+        detailsArr.push();
+        setFilter(false);
+        setShowSpinner(false);
+      });
 
     //   for (let i = 0; i < shipmentDetails.length; i++) {
     //     if (size === shipmentDetails[i].details.size) {
@@ -121,22 +142,6 @@ function MainLayout() {
     //     }
     //   }
     // }
-
-    for (let i = 0; i < shipmentDetails.length; i++) {
-      if (size === shipmentDetails[i].details.size) {
-        console.log("filtered item", shipmentDetails[i]);
-        detailsArr.push(shipmentDetails[i]);
-        setShipmentDetails(detailsArr);
-      }
-    }
-
-    if (detailsArr.length === 0) {
-      console.log(detailsArr.length);
-      console.log("not found ");
-      setNotFound(true);
-    }
-    detailsArr.push();
-    setFilter(false);
   };
 
   const onClickCartHandler = () => {
@@ -196,7 +201,9 @@ function MainLayout() {
               XXL
             </button>
           </div>
-          {notFound ? <p>NOT FOUND YOUR SIZE</p> : null}
+          {notFound ? (
+            <p className={classes.notFound}>NOT FOUND YOUR SIZE</p>
+          ) : null}
           {shipmentDetails && (
             <div className={classes.mainContainer}>
               {shipmentDetails.map(shipment => (
@@ -243,9 +250,6 @@ function MainLayout() {
               </div>
             )}
           </div>
-
-          {/* {showSpinner && <div className={classes.spinner}><Spinner /></div>} */}
-          {/* <Drawer/> */}
 
           {showDrawer ? (
             <div className={classes.drawerContainer}>

@@ -91,6 +91,11 @@ color: white;
 background: black;
 }
 
+.notFound {
+  margin: 300px auto;
+  position: absolute;
+}
+
 .cart {
   background: black;
   color: white;
